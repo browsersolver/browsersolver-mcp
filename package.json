@@ -1,0 +1,77 @@
+{
+  "name": "@browsersolver/mcp",
+  "version": "0.1.0",
+  "description": "BrowserSolver MCP server: Unlock, render, crawl and screenshot any website — anti-bot bypass and technology detection through one API.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "browsersolver-mcp": "./dist/stdio.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "llms-install.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true })\"",
+    "format:check": "prettier --check .",
+    "mcpb:pack": "npm run build && node scripts/prepare-mcpb.mjs && mcpb pack mcpb",
+    "prepack": "npm run build",
+    "start": "node dist/stdio.js",
+    "start:http": "node dist/stdio.js --http",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "author": "BrowserSolver",
+  "license": "MIT",
+  "mcpName": "com.browsersolver/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/browsersolver/browsersolver-mcp.git"
+  },
+  "homepage": "https://github.com/browsersolver/browsersolver-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/browsersolver/browsersolver-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-tools",
+    "browsersolver",
+    "web-unlocker",
+    "web-scraping",
+    "headless-browser",
+    "antibot"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@browsersolver/sdk": "^0.1.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@anthropic-ai/mcpb": "^2.1.2",
+    "@types/node": "^22.10.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
