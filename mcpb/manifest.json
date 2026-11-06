@@ -1,0 +1,92 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/mcpb/main/schemas/mcpb-manifest-v0.4.schema.json",
+  "manifest_version": "0.4",
+  "name": "browsersolver-mcp",
+  "display_name": "BrowserSolver",
+  "version": "0.1.0",
+  "description": "BrowserSolver web unlocker API for Claude.",
+  "long_description": "Unlock, render, crawl and screenshot any website — anti-bot bypass and technology detection through one API.",
+  "author": {
+    "name": "BrowserSolver",
+    "email": "contact@browsersolver.com",
+    "url": "https://www.browsersolver.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/browsersolver/browsersolver-mcp"
+  },
+  "homepage": "https://www.browsersolver.com",
+  "documentation": "https://github.com/browsersolver/browsersolver-mcp#readme",
+  "support": "mailto:contact@browsersolver.com",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/dist/stdio.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/dist/stdio.js"],
+      "env": {
+        "BROWSERSOLVER_API_KEY": "${user_config.BROWSERSOLVER_API_KEY}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "stats",
+      "description": "Infrastructure health for an engine or endpoint over the last hour. Not scoped to your account or tenant. Enabled per account: HTTP 403 means contact support to activate it."
+    },
+    {
+      "name": "usage",
+      "description": "Retrieve real-time usage statistics and credit balance for your BrowserSolver account."
+    },
+    {
+      "name": "website_antibot",
+      "description": "Single-pass scan that names the bot-protection vendor in front of a URL so you can choose the right BrowserSolver fetch tier next."
+    },
+    {
+      "name": "website_crawler",
+      "description": "Fast HTTP pull of public HTML with no browser session. Ideal when the first response already contains the content you need."
+    },
+    {
+      "name": "website_rendering",
+      "description": "Run a managed browser session against a public URL and collect the HTML after client-side scripts finish. Prefer Crawler for static markup; escalate to WebUnlocker on approved hosts when challenges p…"
+    },
+    {
+      "name": "website_screenshot",
+      "description": "Turn any public URL into a PNG, JPEG, WebP, or PDF asset rendered by BrowserSolver. No local Chromium fleet to operate."
+    },
+    {
+      "name": "website_technology",
+      "description": "Map CMS, frameworks, analytics, CDN, and security tooling exposed by a public URL. Choose simple lists or expert metadata with confidence scores."
+    },
+    {
+      "name": "website_webunlocker",
+      "description": "BrowserSolver's highest HTML fetch tier for retail and marketplace hosts on your account whitelist. Solves persistent bot challenges that still block Rendering."
+    }
+  ],
+  "tools_generated": false,
+  "keywords": [
+    "mcp",
+    "browsersolver",
+    "web-unlocker",
+    "web-scraping",
+    "headless-browser",
+    "antibot"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20"
+    }
+  },
+  "user_config": {
+    "BROWSERSOLVER_API_KEY": {
+      "type": "string",
+      "title": "BrowserSolver API key",
+      "description": "Your API key from https://app.browsersolver.com.",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}
